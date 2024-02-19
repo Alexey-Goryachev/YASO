@@ -1,0 +1,41 @@
+{% extends "impred/base.html" %}
+
+{% block content %}
+
+<div>
+    <h3>Predict Image</h3>
+</div>
+
+<div>
+    {% for image in images %}
+    <p> "Thits is {{ image.predict.name }}"</p>
+    <img src="/media/{{image.imagepath}}" alt="{{ image.predict.name }}" style="max-width: 100%; max-height: 100%;">
+    {% endfor %}
+</div>
+
+<!-- {% if messages %}
+<div>
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="col-md-5">
+            <div class="form-group">
+                {{ image_form.as_p }}
+                <span>{{ image_form.errors.imagepath }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+        <button type="submit">Load Image</button>
+        <button type="reset" class="secondary">Reset</button>
+    </div>
+
+</form> -->
+
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends "impred/base.html" %}
+
+{% block content %}
+
+<!-- Login content start -->
+
+<div class="login-hero">
+    <div class="login-container1">
+        <img
+            alt="image"
+            src="https://img.freepik.com/free-vector/blue-futuristic-networking-technology_53876-100679.jpg?w=900&amp;t=st=1707929845~exp=1707930445~hmac=e84e7e2f3ef6d1f2a3d4583c5e6f880f752b21f3c080c7cf0ce26daa2b201e1a"
+            class="login-image"
+        />
+    </div>
+    <div class="login-container2">
+        <div class="login-container3">
+            <h1 class="login-text">Wellcome to YASO</h1>
+
+            <!-- Form login -->
+            <form action="{% url 'user:login' %}" method="post" class="login-form">
+                {% csrf_token %}
+
+                {% if messages %}
+                <div>
+                    {% for message in messages %}
+                    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <div class="login-textinput">
+                    <label>Username
+                        <div class="input">
+                            {{ form.username }}
+                        </div>
+                    </label>
+                </div>
+            
+                <div class="login-textinput">
+                    <label for="username">Password
+                        <div class="input">
+                            {{ form.password }}
+                        </div>
+                    </label>
+                </div>
+                        
+                <div class="login-btn-group">
+                    <button type="submit" class="login-button button">Submit</button>
+                    <button type="reset" class="login-button1 button">Reset</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- Login content end -->
+
+{% endblock %}

@@ -1,0 +1,7 @@
+[
+    {
+        "name": "SIFAR-10",
+        "description": "Object Recognition in Images. Recognizes images in 10 categories: 'Airplane', 'Automobile', 'Bird', 'Cat', 'Deer', 'Dog', 'Frog', 'Horse', 'Ship', 'Truck'",
+        "accuracy": "0.91"
+    }
+]
