@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "ds-project"
+version = "0.1.0"
+description = ""
+authors = ["NikYurchik <14urka@gmail.com>"]
+readme = "README.md"
+packages = [{include = "ds_project"}]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.12"
+django = "^5.0.2"
+waitress = "^3.0.0"
+pillow = "^10.2.0"
+jupyter = "^1.0.0"
+scikit-learn = "^1.4.1.post1"
+numpy = "^1.26.4"
+pandas = "^2.2.0"
+matplotlib = "^3.8.3"
+tensorflow-io-gcs-filesystem = "0.31"
+tensorflow = "2.15.0"
+tensorflow-intel = "^2.15.0"
+tensorflow-cpu = "2.15.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
