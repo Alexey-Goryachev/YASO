@@ -1,0 +1,52 @@
+[
+    {
+        "netmodel": "SIFAR-10",
+        "predict_id": "0",
+        "name": "Airplane"
+    },
+    {
+        "netmodel": "SIFAR-10",
+        "predict_id": "1",
+        "name": "Automobile"
+    },
+    {
+        "netmodel": "SIFAR-10",
+        "predict_id": "2",
+        "name": "Bird"
+    },
+    {
+        "netmodel": "SIFAR-10",
+        "predict_id": "3",
+        "name": "Cat"
+    },
+    {
+        "netmodel": "SIFAR-10",
+        "predict_id": "4",
+        "name": "Deer"
+    },
+    {
+        "netmodel": "SIFAR-10",
+        "predict_id": "5",
+        "name": "Dog"
+    },
+    {
+        "netmodel": "SIFAR-10",
+        "predict_id": "6",
+        "name": "Frog"
+    },
+    {
+        "netmodel": "SIFAR-10",
+        "predict_id": "7",
+        "name": "Horse"
+    },
+    {
+        "netmodel": "SIFAR-10",
+        "predict_id": "8",
+        "name": "Ship"
+    },
+    {
+        "netmodel": "SIFAR-10",
+        "predict_id": "9",
+        "name": "Truck"
+    }
+]
