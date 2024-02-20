@@ -1,0 +1,37 @@
+{% extends "impred/base.html" %}
+
+{% block content %}
+
+<div class="home-hero">
+    <!-- <div class="home-faq"> -->
+        <!-- <div class="home-faq-container faqContainer"> -->
+            <div class="home-faq11">
+                <div class="mb-12" style="display: flex;justify-content: space-between;">
+                    <h1 style="padding: 0;">Neural Network Models</h1>
+                    <!-- {% if user.is_authenticated %}
+                    <a class="home-login buttonFilled" href="impred/netmodel_add" role="button" style="margin: 0;">Add NetModel</a>
+                    {% endif %} -->
+                </div>
+                {% for netm in netmodels %}
+                <div class="quote">
+                    <p><span class="bold">Model:</span> {{netm.netmodel.name}}</p>
+                    <p>{{netm.netmodel.description}}</p>
+                    <p><span class="bold">Accuracy =</span> {{netm.netmodel.accuracy}}</p>
+
+                    {% if netm.labels %}
+                    <p class="bold">Labels:</p>
+                    <p>{{netm.labels}}</p>
+                    {% endif %}
+
+                    <!-- {% if user.is_authenticated %}
+                    <a class="home-login buttonFilled" href="impred/labels/{{netm.id}}" role="button">Labels</a>
+                    {% endif %} -->
+
+                </div>
+                {% endfor %}
+            </div>
+        <!-- </div> -->
+    <!-- </div> -->
+</div>
+
+{% endblock content %}

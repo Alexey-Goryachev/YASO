@@ -39,6 +39,7 @@
   --dl-color-custom-neutral-dark: #141A22;
   --dl-color-custom-neutral-light: #FFFFFF;
   --dl-space-space-oneandhalfunits: 24px;
+  --div-border-color: #B3B3B3;
 }
 .button {
   color: var(--dl-color-gray-black);
@@ -81,6 +82,9 @@
 .teleport-show {
   display: flex !important;
   transform: none !important;
+}
+.bold {
+  font-weight: bold;
 }
 .buttonFilled {
   color: var(--dl-color-custom-neutral-light);

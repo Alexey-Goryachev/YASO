@@ -97,13 +97,11 @@
 
 .home-container {
   width: 100%;
-  height: 100%;
   display: flex;
   overflow: auto;
   min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;  
 }
 .home-header {
   width: 100%;
@@ -298,6 +296,15 @@
   flex-direction: row;
   padding-bottom: var(--dl-space-space-fourunits);
 }
+.home-faq11 {
+  width: 100%;
+  display: block;
+  max-width: var(--dl-size-size-maxwidth);
+  padding-top: var(--dl-space-space-fourunits);
+  padding-left: var(--dl-space-space-threeunits);
+  padding-right: var(--dl-space-space-threeunits);
+  padding-bottom: var(--dl-space-space-fourunits);
+}
 .home-container2 {
   display: flex;
   max-width: 35%;
@@ -308,6 +315,9 @@
 .home-text18 {
   margin-bottom: var(--dl-space-space-oneandhalfunits);
 }
+.mb-12 {
+  padding: var(--dl-space-space-oneandhalfunits);
+}
 .home-text19 {
   text-align: left;
 }
@@ -317,6 +327,28 @@
   align-items: flex-start;
   flex-direction: column;
 }
+.quote {
+  gap: var(--dl-space-space-halfunit);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: var(--dl-space-space-oneandhalfunits);
+  box-shadow: 1px 1px 3px var(--div-border-color);
+}
+@media (min-width: 1170px) {
+  .quote {
+      flex-wrap: nowrap;
+      transition: all .3s ease-out;
+      /* box-shadow: 1px 1px 2px rgba(90,90,90,.15); */
+  }
+}
+
+@media (min-width: 1170px) {
+  .quote:focus, .quote:hover {
+      box-shadow: 2px 2px 20px rgba(90,90,90,.35);
+  }
+}
+
 .home-text22 {
   color: #595959;
   margin-top: var(--dl-space-space-twounits);
@@ -503,9 +535,6 @@
   .home-hero-sub-heading {
     padding-left: var(--dl-space-space-unit);
     padding-right: var(--dl-space-space-unit);
-  }
-  .home-faq1 {
-    flex-direction: column;
   }
   .home-container2 {
     max-width: 100%;

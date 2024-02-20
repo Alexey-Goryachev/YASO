@@ -29,7 +29,8 @@ def load_data():
         netmod, *_ = NetModels.objects.get_or_create(
                         name = fn,
                         description = netm.get("description"),
-                        accuracy = netm.get("accuracy")
+                        accuracy = netm.get("accuracy"),
+                        categories = netm.get("categories")
                     )
         a_list.update({fn: netmod})
 
