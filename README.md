@@ -18,7 +18,7 @@ Open source platform for launching your own neural networks for testing and work
 
 
 ## Documentation 📗
- - [Jupyter notebook]([https://alexey-goryachev.github.io/PhotoShare_Nagini-team/](https://github.com/Alexey-Goryachev/YASO/blob/main/impred/data/YASO_cifar_10_model_ipynb_2.ipynb)https://github.com/Alexey-Goryachev/YASO/blob/main/impred/data/YASO_cifar_10_model_ipynb_2.ipynb)
+ - [Jupyter notebook](https://github.com/Alexey-Goryachev/YASO/blob/main/impred/data/YASO_cifar_10_model_ipynb_2.ipynb)
 
 
 ## Installation 💻
