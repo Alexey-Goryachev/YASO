@@ -1,0 +1,37 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Poetry
+        run: |
+          if [ ! -f "$HOME/.poetry/bin/poetry" ]; then
+            curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+          fi
+          source $HOME/.poetry/env
+
+      - name: Install dependencies
+        run: poetry install
+      
+      - name: Deploy to remote server
+        run: |
+          scp -r ./* ubuntu@3.120.188.105:/home/ubuntu
+
+      - name: Apply Migrations
+        run: poetry run python manage.py migrate
+
+      # - name: Collect Static Files
+      #   run: poetry run python manage.py collectstatic --noinput
+
+      - name: Start Django Server
+        run: poetry run python manage.py runserver 0.0.0.0:8000
