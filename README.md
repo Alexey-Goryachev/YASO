@@ -40,4 +40,4 @@ To run this project, follow these steps:
 
 
 ## License 🔱
-Project "PhotoShare" is distributed under the MIT license.
+Project "YASO" is distributed under the MIT license.
