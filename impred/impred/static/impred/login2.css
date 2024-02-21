@@ -162,6 +162,11 @@
   height: 484px;
   object-fit: cover;
 }
+.login-image0 {
+  width: 50%;
+  height: 524px;
+  object-fit: cover;
+}
 .login-container2 {
   flex: 0 0 auto;
   width: auto;
@@ -178,6 +183,12 @@
 }
 .signup-container3 {
   height: 440px;
+  display: flex;
+  margin-left: var(--dl-space-space-twounits);
+  flex-direction: column;
+}
+.signup-container30 {
+  height: 520px;
   display: flex;
   margin-left: var(--dl-space-space-twounits);
   flex-direction: column;
@@ -201,6 +212,10 @@
 .login-textinput {
   /* height: 40px; */
   margin: var(--dl-space-space-halfunit);
+  align-self: stretch;
+}
+.login-textinput0 {
+  margin: 4px;
   align-self: stretch;
 }
 .login-textinput1 {

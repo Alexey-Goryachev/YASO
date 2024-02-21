@@ -18,6 +18,14 @@ class NetModels(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+
+    #     model = Image.open(self.modelpath)
+    #     # with open(self.modelpath.path, "wb") as f:
+    #     #     img.save(f)
+    #     model.save(self.modelpath.path)
+
 
 # class_names = ['Airplane', 'Automobile', 'Bird', 'Cat', 'Deer', 'Dog', 'Frog', 'Horse', 'Ship', 'Truck']
 class Labels(models.Model):
@@ -30,9 +38,8 @@ class Labels(models.Model):
         return f"{self.name}"
 
     class Meta:
-        #unique_together = ("id","predict_id",)
-
         unique_together = ('netmodel', 'predict_id',)
+
 
 class Images(models.Model):
     name = models.CharField(max_length=30, null=False)                              # Наименование картинки
@@ -47,11 +54,13 @@ class Images(models.Model):
 
     # resizing images
     def save(self, *args, **kwargs):
-        super().save()
+        super().save(*args, **kwargs)
 
         img = Image.open(self.imagepath)
 
         if img.height > 250 or img.width > 250:
             new_img = (250, 250)
             img.thumbnail(new_img)
+            # with open(self.imagepath.path, "wb") as f:
+            #     img.save(f)
             img.save(self.imagepath.path)

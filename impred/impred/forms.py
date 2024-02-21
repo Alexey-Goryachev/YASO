@@ -9,17 +9,19 @@ class ImageForm(forms.ModelForm):
         model = Images
         fields = ['imagepath']
 
+
 class NetModelForm(forms.ModelForm):
     name = forms.CharField(min_length=3, max_length=30, required=True, widget=forms.TextInput())
     description = forms.CharField(max_length=150, required=False, widget=forms.TextInput())
     modelpath = forms.FileField(widget=forms.FileInput())
     accuracy = forms.FloatField(min_value=0.0, max_value=1.0, required=True, widget=forms.NumberInput())
     categories = forms.IntegerField(min_value=1, required=True, widget=forms.NumberInput())
-    # labels = forms.CharField(min_length=2, required=True, widget=forms.TextInput())
+    labels = forms.CharField(min_length=2, required=True, widget=forms.Textarea(attrs={'rows':3, 'cols':32}))
 
     class Meta:
         model = NetModels
-        fields = ['name', 'description', 'modelpath', 'accuracy', 'categories']
+        fields = ['name', 'description', 'categories', 'accuracy', 'modelpath']
+        exclude = ['labels']
 
 
 class LabelForm(forms.ModelForm):
