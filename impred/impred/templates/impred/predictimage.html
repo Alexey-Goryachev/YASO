@@ -6,18 +6,105 @@
     <div class="home-faq11">
 
         <div>
-            <h1 class="mb-12">Predict Images</h1>
+            <h1 class="mb-12">Predict Image</h1>
         </div>
 
-        <div style="display: flex;gap: 12px;flex-wrap: wrap;">
-            {% for image in images %}
-            <div class="quote">
-                <p> "Thits is <span class="bold">{{ image.predict.name }}</span>"</p>
-                <img src="/media/{{image.imagepath}}" alt="{{ image.predict.name }}" style="max-width: 100%; max-height: 100%;">
+        <div >
+            <div class="quote1">
+                <div>
+                    <p> Thits is
+                        <span class="bold" id="id_predict_name">{{ image.predict.name }}</span>
+                        {% if image.real and image.real != image.predict.name %}
+                            <span id="id_real_name">(real <span class="bold">{{ image.real }}</span>)</span>
+                        {% endif %}
+                    </p>
+                    <img src="/media/{{image.imagepath}}" alt="{{ image.predict.name }}" style="max-width: 100%; max-height: 100%;">
+                </div>
+
+                <form method="POST" action="{% url 'impred:predictimage' id=image.id%}" class="quote-form">
+                    {% csrf_token %}
+
+                    <div class="login-textinput0">
+                        <label> Name:
+                            <div class="input">
+                                {{ form.name }}
+                            </div>
+                        </label>
+                    </div>
+                    <div class="login-textinput0">
+                        <label> Real type:
+                            <div class="input">
+                                {{ form.real }}
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="login-btn-group">
+                        <button type="submit" class="login-button button">Submit</button>
+                        <button type="reset" class="login-button1 button">Reset</button>
+                    </div>
+                </form>
+
+                {% if image.real and image.real != image.predict.name %}
+                <div id="div-retrain" class="">
+                    <div class="quote-form">
+                        <p>Retrain the model {{image.netmodel.name}}?</p>
+                        <button type="button" class="login-button button" id="btn-retrain" onclick="fnRetrain('{{image.id}}')">Retrain</button>
+                    </div>
+                </div>
+                {% endif %}
             </div>
-            {% endfor %}
         </div>
     </div>
 </div>
 
+<script>
+    labels = document.getElementById('id_labels');
+    if (labels.hasAttribute('value')) {
+        attr = labels.getAttribute('value');
+        // console.log(attr);
+        labels.value = attr;
+    }
+    
+    async function fnRetrain(image_id) {
+        const predict_name = document.getElementById('id_predict_name');
+        const real_name = document.getElementById('id_real_name');
+        const div_retrain = document.getElementById('div-retrain');
+        let url = document.URL + "/retrain";
+
+        try {
+            const fetchOptions = {
+                method: "GET",
+                headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                },
+            };
+            responseData = await fetch(url, fetchOptions);
+            if (!responseData.ok) {
+                const errorMessage = await response.text();
+                throw new Error(errorMessage);
+            }
+            const responseJson = await responseData.json();
+            let message = responseJson.message;
+
+            if (responseJson.ok) {
+                predict_name.textContent = responseJson.label;
+                if (Boolean(real_name)) {
+                    real_name.classList.add("hidden");
+                }
+                if (Boolean(div_retrain)) {
+                    div_retrain.classList.add("hidden");
+                }
+                console.log(message);
+                alert(message);
+            } else {
+                throw new Error(message);
+            }
+        } catch (error) {
+            console.error(`Error: ${error}`);
+            alert(`Error: ${error}`);
+        }
+    }
+</script>
 {% endblock content %}

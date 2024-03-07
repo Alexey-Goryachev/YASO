@@ -22,9 +22,12 @@
             <p>{{netm.labels}}</p>
             {% endif %}
 
-            <!-- {% if user.is_authenticated %}
-            <a class="home-login buttonFilled" href="impred/labels/{{netm.id}}" role="button">Labels</a>
-            {% endif %} -->
+            {% if user.is_authenticated %}
+            <div>
+                <a class="home-login buttonFilled" href="/netmodel/{{netm.netmodel.id}}" role="button">Edit</a>
+                <a class="home-login buttonFilled" href="/netmodel_del/{{netm.netmodel.id}}" role="button">Delete</a>
+            </div>
+            {% endif %}
 
         </div>
         {% endfor %}

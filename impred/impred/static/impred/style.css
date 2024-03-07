@@ -86,6 +86,9 @@
 .bold {
   font-weight: bold;
 }
+.hidden {
+  display: none;
+}
 .buttonFilled {
   color: var(--dl-color-custom-neutral-light);
   transition: 0.3s;

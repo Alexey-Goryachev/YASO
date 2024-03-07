@@ -1,0 +1,44 @@
+{% extends "impred/base.html" %}
+
+{% block content %}
+
+<div class="home-hero">
+    <div class="home-faq11">
+
+        <div>
+            <h1 class="mb-12">Predict Images</h1>
+        </div>
+
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+            <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div style="display: flex;gap: 12px;flex-wrap: wrap;">
+            {% for image in images %}
+            <div class="quote">
+                <p> Thits is
+                    <span class="bold">{{ image.predict.name }}</span>
+                    {% if image.real %}
+                        {% if image.real != image.predict.name %}
+                            (real <span class="bold">{{ image.real }}</span>)
+                        {% endif %}
+                    {% endif %}
+                </p>
+                <img src="/media/{{image.imagepath}}" alt="{{ image.predict.name }}" style="max-width: 100%; max-height: 100%;">
+                {% if user.is_authenticated %}
+                <div>
+                    <a class="home-login buttonFilled" href="/predictimage/{{image.id}}" role="button">Edit</a>
+                    <a class="home-login buttonFilled" href="/predictimage/{{image.id}}/delete" role="button">Delete</a>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

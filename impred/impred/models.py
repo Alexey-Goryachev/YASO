@@ -3,9 +3,6 @@ from django.contrib.auth.models import User
 from PIL import Image
 
 
-# from user.models import СustomUser
-
-
 # Create your models here.
 class NetModels(models.Model):
     name = models.CharField(max_length=30, null=False, unique=True)     # Наименование модели
@@ -14,20 +11,18 @@ class NetModels(models.Model):
     modelpath = models.FileField(upload_to='models/', null=False)       # Путь к файлу загруженной модели
     accuracy = models.FloatField(null=False)                            # Достигнутая точность модели
     categories = models.IntegerField(null=False)                        # Количество категорий предсказания модели
+    version = models.CharField(max_length=10, null=True)                # Версия модели
     
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name} ({self.version}) -> {self.accuracy*100}% "
+        # return f"{self.name}"
 
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)
-
-    #     model = Image.open(self.modelpath)
-    #     # with open(self.modelpath.path, "wb") as f:
-    #     #     img.save(f)
-    #     model.save(self.modelpath.path)
+    def save(self, *args, **kwargs):
+        if not self.version:
+            self.version = '0.0.1'
+        super().save(*args, **kwargs)
 
 
-# class_names = ['Airplane', 'Automobile', 'Bird', 'Cat', 'Deer', 'Dog', 'Frog', 'Horse', 'Ship', 'Truck']
 class Labels(models.Model):
     id = models.AutoField(primary_key=True)
     predict_id = models.IntegerField(null=False)                        # Индекс метки в модели
@@ -40,11 +35,22 @@ class Labels(models.Model):
     class Meta:
         unique_together = ('netmodel', 'predict_id',)
 
+# class BaseImages(models.Model):
+#     name = models.CharField(max_length=30, null=False)                              # Наименование картинки
+#     netmodel = models.ForeignKey(NetModels, on_delete=models.CASCADE, null=True)    # Модель, по которой оценивалась картинка
+#     predict = models.ForeignKey(Labels, on_delete=models.SET_NULL, null=True)        # Категория (метка) предсказания
+#     real = models.CharField(max_length=30, null=True)
+#     created = models.DateTimeField(auto_now_add=True)
+
+#     def __str__(self):
+#         return f"{self.name}"
+
 
 class Images(models.Model):
     name = models.CharField(max_length=30, null=False)                              # Наименование картинки
     netmodel = models.ForeignKey(NetModels, on_delete=models.CASCADE, null=True)    # Модель, по которой оценивалась картинка
-    predict = models.ForeignKey(Labels, on_delete=models.CASCADE, null=True)        # Категория (метка) предсказания
+    predict = models.ForeignKey(Labels, on_delete=models.SET_NULL, null=True)       # Категория (метка) предсказания
+    real = models.CharField(max_length=30, null=True)                               # Реальная категория (метка)
     created = models.DateTimeField(auto_now_add=True)
     imagepath = models.ImageField(upload_to='images/', null=False)                  #  Путь файлу загруженной картинки
     # user = models.ForeignKey(User, on_delete=models.CASCADE, default=1) # временно закоментировал до момента создания класса User
@@ -56,11 +62,12 @@ class Images(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        img = Image.open(self.imagepath)
+        try:
+            img = Image.open(self.imagepath)
 
-        if img.height > 250 or img.width > 250:
-            new_img = (250, 250)
-            img.thumbnail(new_img)
-            # with open(self.imagepath.path, "wb") as f:
-            #     img.save(f)
-            img.save(self.imagepath.path)
+            if img.height > 250 or img.width > 250:
+                new_img = (250, 250)
+                img.thumbnail(new_img)
+                img.save(self.imagepath.path)
+        except:
+            pass

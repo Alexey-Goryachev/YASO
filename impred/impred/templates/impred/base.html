@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Prize Good Natured Porcupine</title>
+    <title>YASO Lab</title>
     <meta property="og:title" content="Prize Good Natured Porcupine" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
@@ -68,10 +68,12 @@
     </style>
     {% load static %}
     <link rel="stylesheet" href="{% static 'impred/style.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'impred/index2.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'impred/lab2.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'impred/index.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'impred/lab.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'impred/login2.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'impred/error.css' %}" type="text/css">
+    <!-- <link rel="shortcut icon" href="{% static 'impred/favicon.ico' %}"> -->
+    <link rel="shortcut icon" href="/media/favicon.ico">
 </head>
 
 <body>
@@ -89,7 +91,7 @@
                     <a href="/" class="home-nav12 bodySmall">Home</a>
                     <a href="{% url 'impred:loadimage' %}" id="lab" class="home-nav4 bodySmall">Lab</a>
                     <a href="{% url 'impred:netmodels' %}" id="netmodels" class="home-nav4 bodySmall">NetModels</a>
-                    <a href="{% url 'impred:predictimage' %}" id="predictimage" class="home-nav4 bodySmall">PredictImages</a>
+                    <a href="{% url 'impred:predictimages' %}" id="predictimages" class="home-nav4 bodySmall">PredictImages</a>
                     <a href="#" id="wiki" class="home-nav5 bodySmall">Wiki</a>
                 </nav>
 
@@ -129,7 +131,7 @@
                         <a href="/" class="home-nav12 bodySmall">Home</a>
                         <a href="{% url 'impred:loadimage' %}" id="lab" class="home-nav4 bodySmall">Lab</a>
                         <a href="{% url 'impred:netmodels' %}" id="netmodels" class="home-nav4 bodySmall">NetModels</a>
-                        <a href="{% url 'impred:predictimage' %}" id="predictimage" class="home-nav4 bodySmall">PredictImages</a>
+                        <a href="{% url 'impred:predictimages' %}" id="predictimages" class="home-nav4 bodySmall">PredictImages</a>
                             <a href="#" id="wiki" class="home-nav5 bodySmall">Wiki</a>
                     </nav>
                     <div class="home-buttons1">
@@ -171,7 +173,7 @@
                     <a href="/" class="home-nav11 bodySmall">Home</a>
                     <a href="{% url 'impred:loadimage' %}" class="home-nav41 bodySmall">Lab</a>
                     <a href="{% url 'impred:netmodels' %}" id="fnetmodels" class="home-nav4 bodySmall">NetModels</a>
-                    <a href="{% url 'impred:predictimage' %}" id="fpredictimage" class="home-nav4 bodySmall">PredictImages</a>
+                    <a href="{% url 'impred:predictimages' %}" id="fpredictimages" class="home-nav4 bodySmall">PredictImages</a>
                     <span class="home-nav51 bodySmall">Wiki</span>
                 </nav>
             </div>

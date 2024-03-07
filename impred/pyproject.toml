@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "ds_project"}]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.12"
+python = ">=3.10,<3.11"
 django = "^5.0.2"
 waitress = "^3.0.0"
 pillow = "^10.2.0"
@@ -20,6 +20,8 @@ tensorflow-io-gcs-filesystem = "0.31"
 tensorflow = "2.15.0"
 tensorflow-intel = "^2.15.0"
 tensorflow-cpu = "2.15.0"
+djangorestframework = "^3.14.0"
+more-itertools = "^10.2.0"
 
 
 [build-system]
