@@ -25,7 +25,7 @@ jobs:
       
       - name: Deploy to remote server
         run: |
-          scp -r ./* ubuntu@3.120.188.105:/home/ubuntu
+          scp -r ./* ubuntu@18.185.184.100:/home/ubuntu
 
       - name: Apply Migrations
         run: poetry run python manage.py migrate
