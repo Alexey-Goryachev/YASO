@@ -24,7 +24,8 @@ jobs:
           echo 'export PATH="$HOME/.local/bin:$PATH"' >> $GITHUB_ENV
 
       - name: Install dependencies
-        run: poetry install
+        working-directory: ./impred
+        run: impred/poetry install
       
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
@@ -33,13 +34,15 @@ jobs:
 
       - name: Deploy to remote server
         run: |
-          scp -r ./* ubuntu@18.185.184.100:/home/ubuntu
+          scp -r ./impred/* ubuntu@18.185.184.100:/home/ubuntu
 
       - name: Apply Migrations
+        working-directory: ./impred
         run: poetry run python manage.py migrate
 
       # - name: Collect Static Files
       #   run: poetry run python manage.py collectstatic --noinput
 
       - name: Start Django Server
+        working-directory: ./impred
         run: poetry run python manage.py runserver 0.0.0.0:8000
