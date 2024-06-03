@@ -25,7 +25,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./impred
-        run: impred/poetry install
+        run: poetry install
       
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
