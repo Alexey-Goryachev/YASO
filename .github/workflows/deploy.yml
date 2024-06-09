@@ -41,17 +41,29 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan 18.185.184.100 >> ~/.ssh/known_hosts
 
+      - name: Create deployment package
+        run: |
+          cd ./impred
+          tar -czvf deployment_package.tar.gz *
+        working-directory: .
+
       - name: Deploy to remote server
         run: |
-          scp -r ./impred/* ubuntu@18.185.184.100:/home/ubuntu/yaso
+          scp ./impred/deployment_package.tar.gz ubuntu@18.185.184.100:/home/ubuntu/yaso
+
+      - name: Extract deployment package on remote server
+        run: |
+          ssh ubuntu@18.185.184.100 "cd /home/ubuntu/yaso && tar -xzvf deployment_package.tar.gz"
 
       - name: Apply Migrations
         working-directory: ./impred
-        run: poetry run python manage.py migrate
+        run: |
+          ssh ubuntu@18.185.184.100 "cd /home/ubuntu/yaso && ./.venv/bin/activate && poetry run python3 manage.py migrate"
 
       # - name: Collect Static Files
       #   run: poetry run python manage.py collectstatic --noinput
 
       - name: Start Django Server
         working-directory: ./impred
-        run: poetry run python manage.py runserver 0.0.0.0:8000
+        run: |
+          ssh ubuntu@18.185.184.100 "cd /home/ubuntu/yaso && ./.venv/bin/activate && poetry run python3 manage.py runserver 0.0.0.0:8000"
