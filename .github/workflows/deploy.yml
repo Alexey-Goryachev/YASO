@@ -36,6 +36,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Add server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan 18.185.184.100 >> ~/.ssh/known_hosts
+
       - name: Deploy to remote server
         run: |
           scp -r ./impred/* ubuntu@18.185.184.100:/home/ubuntu
