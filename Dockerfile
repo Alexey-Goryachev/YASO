@@ -18,8 +18,8 @@ COPY impred /app
 COPY impred/db.sqlite3 /app/db.sqlite3
 
 # Примените миграции и соберите статические файлы
-RUN /root/.local/bin/poetry run python3 manage.py migrate && \
-    /root/.local/bin/poetry run python3 manage.py collectstatic --noinput
+RUN /root/.local/bin/poetry run python3 manage.py migrate
+    #/root/.local/bin/poetry run python3 manage.py collectstatic --noinput
 
 # Откройте порт
 EXPOSE 8000
