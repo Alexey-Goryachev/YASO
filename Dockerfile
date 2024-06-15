@@ -5,7 +5,7 @@ FROM python:3.10
 WORKDIR /app
 
 # Скопируйте файлы pyproject.toml и poetry.lock
-COPY impred/pyproject.toml impred/poetry.lock ./
+COPY impred/pyproject.toml ./
 
 # Установите Poetry
 RUN curl -sSL https://install.python-poetry.org | python3 - && \
