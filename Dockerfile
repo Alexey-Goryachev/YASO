@@ -9,10 +9,9 @@ COPY impred/pyproject.toml ./
 
 # Установите Poetry
 RUN curl -sSL https://install.python-poetry.org | python3 - && \
-    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && \
-    source ~/.bashrc && \
-    poetry config virtualenvs.create false && \
-    poetry install --no-root
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> /etc/profile.d/poetry.sh && \
+    /root/.local/bin/poetry config virtualenvs.create false && \
+    /root/.local/bin/poetry install --no-root
 
 # Скопируйте проект в рабочую директорию
 COPY impred /app
