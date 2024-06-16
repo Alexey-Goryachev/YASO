@@ -25,4 +25,4 @@ RUN /root/.local/bin/poetry run python3 manage.py migrate
 EXPOSE 8000
 
 # Определите команду запуска
-CMD ["poetry", "run", "python3", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["/root/.local/bin/poetry", "run", "python3", "manage.py", "runserver", "0.0.0.0:8000"]
